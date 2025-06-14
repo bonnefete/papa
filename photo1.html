@@ -1,66 +1,76 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Photo 1</title>
-  <style>
-    body {
-      margin: 0;
-      background: white;
-      font-family: Arial, sans-serif;
-      color: black;
-      text-align: center;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Photo 1</title>
+<style>
+  body {
+    margin: 0;
+    background: white;
+    font-family: Arial, sans-serif;
+    color: black;
+    text-align: center;
+  }
+  .question-box {
+    margin-top: 3em;
+  }
+  input[type="text"] {
+    padding: 0.5em;
+    font-size: 1rem;
+    width: 200px;
+    margin-right: 0.5em;
+  }
+  button {
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .photo-loading {
+    max-width: 600px;
+    margin: 2em auto 1em;
+    position: relative;
+    overflow: hidden;
+    display: none;
+  }
+  .photo-loading img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    animation: appearBlocks 1.5s steps(6) forwards;
+  }
+  @keyframes appearBlocks {
+    to {
+      opacity: 1;
     }
-    .photo-loading {
-      max-width: 600px;
-      margin: 2em auto 1em;
-      position: relative;
-      overflow: hidden;
-    }
-    .photo-loading img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      opacity: 0;
-      animation: appearBlocks 1.5s steps(6) forwards;
-    }
-    @keyframes appearBlocks {
-      to {
-        opacity: 1;
-      }
-    }
-    .hidden {
-      display: none;
-    }
-    input, button {
-      font-size: 1rem;
-      padding: 0.5em;
-      margin-top: 1em;
-    }
-  </style>
+  }
+  p {
+    font-size: 1rem;
+  }
+</style>
 </head>
 <body>
-  <h2>quel objet personnalisé as-tu reçu pour la fête des pères, il y a deux ans?</h2>
-  <input type="text" id="answer" placeholder="ta réponse ici..." />
-  <br />
-  <button onclick="checkAnswer()">valider</button>
-
-  <div id="photoContainer" class="photo-loading hidden">
-    <img src="https://i.ibb.co/JWWdsNs5/dclassic-2025-06-14-72034-537-PM.jpg" alt="dclassic-2025-06-14-72034-537-PM" border="0">
+  <div class="question-box">
+    <p>quelle est ma pizza préférée ?</p>
+    <input type="text" id="answer" placeholder="ta réponse ici" />
+    <button onclick="checkAnswer()">valider</button>
+    <p id="error" style="color:red;"></p>
   </div>
 
-  <p id="feedback"></p>
+  <div class="photo-loading" id="photoBox">
+    <a href="https://ibb.co/gbb7RGRz"><img src="https://i.ibb.co/JWWdsNs5/dclassic-2025-06-14-72034-537-PM.jpg" alt="photo" border="0"></a>
+    <p>les ronflements résonnent à partir d'ici.</p>
+  </div>
 
   <script>
     function checkAnswer() {
       const input = document.getElementById("answer").value.trim().toLowerCase();
-      const correctAnswer = "couteau";
-      if (input === correctAnswer) {
-        document.getElementById("photoContainer").classList.remove("hidden");
-        document.getElementById("feedback").textContent = "";
+      if (input === "quatre fromages") {
+        document.querySelector(".question-box").style.display = "none";
+        document.getElementById("photoBox").style.display = "block";
       } else {
-        document.getElementById("feedback").textContent = "essaie encore !";
+        document.getElementById("error").innerText = "mauvaise réponse ! essaie encore.";
       }
     }
   </script>
