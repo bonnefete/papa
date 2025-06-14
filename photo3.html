@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>photo 3</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="photo-container">
+    <canvas id="minitel" width="600" height="400"></canvas>
+    <p class="caption">toujours dans mon cœur ❤️</p>
+  </div>
+
+  <script>
+    const imgSrc = 'https://i.ibb.co/C3rFT5TW/dclassic-2025-06-14-72343-560-PM.jpg';
+    const redirectTo = 'photo4.html';
+
+    const canvas = document.getElementById('minitel');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = imgSrc;
+
+    img.onload = () => {
+      let currentLine = 0;
+      const speed = 15;
+      const drawLine = () => {
+        ctx.drawImage(img, 0, currentLine, img.width, 1, 0, currentLine, canvas.width, 1);
+        currentLine++;
+        if (currentLine < canvas.height) {
+          setTimeout(drawLine, speed);
+        } else {
+          setTimeout(() => {
+            window.location.href = redirectTo;
+          }, 3000);
+        }
+      };
+      drawLine();
+    };
+  </script>
+</body>
+</html>
