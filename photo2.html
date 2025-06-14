@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>photo 2</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Photo 2</title>
+<style>
+  body {
+    margin: 0;
+    background: white;
+    font-family: Arial, sans-serif;
+    color: black;
+    text-align: center;
+  }
+  .photo-loading {
+    max-width: 600px;
+    margin: 2em auto 1em;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-loading img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    animation: appearBlocks 1.5s steps(6) forwards;
+  }
+  @keyframes appearBlocks {
+    to {
+      opacity: 1;
+    }
+  }
+  p {
+    font-size: 1rem;
+  }
+</style>
 </head>
 <body>
-  <div class="photo-container">
-    <canvas id="minitel" width="600" height="400"></canvas>
-    <p class="caption">merci pour tous ces souvenirs</p>
+  <div class="photo-loading">
+    <img src="https://i.ibb.co/v4k7dtnb/dclassic-2025-06-14-72126-222-PM.jpg" alt="Photo 2" />
   </div>
-
-  <script>
-    const imgSrc = 'https://i.ibb.co/v4k7dtnb/dclassic-2025-06-14-72126-222-PM.jpg';
-    const redirectTo = 'photo3.html';
-
-    const canvas = document.getElementById('minitel');
-    const ctx = canvas.getContext('2d');
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = imgSrc;
-
-    img.onload = () => {
-      let currentLine = 0;
-      const speed = 15;
-      const drawLine = () => {
-        ctx.drawImage(img, 0, currentLine, img.width, 1, 0, currentLine, canvas.width, 1);
-        currentLine++;
-        if (currentLine < canvas.height) {
-          setTimeout(drawLine, speed);
-        } else {
-          setTimeout(() => {
-            window.location.href = redirectTo;
-          }, 3000);
-        }
-      };
-      drawLine();
-    };
-  </script>
+  <p>La deuxième photo. <a href="/photo3.html">Suivant →</a></p>
 </body>
 </html>
