@@ -12,11 +12,26 @@
     color: black;
     text-align: center;
   }
+  .question-box {
+    margin-top: 3em;
+  }
+  input[type="text"] {
+    padding: 0.5em;
+    font-size: 1rem;
+    width: 200px;
+    margin-right: 0.5em;
+  }
+  button {
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    cursor: pointer;
+  }
   .photo-loading {
     max-width: 600px;
     margin: 2em auto 1em;
     position: relative;
     overflow: hidden;
+    display: none;
   }
   .photo-loading img {
     width: 100%;
@@ -36,9 +51,28 @@
 </style>
 </head>
 <body>
-  <div class="photo-loading">
-    <a href="https://ibb.co/gbLWV5S4"><img src="https://i.ibb.co/6c7tB3HX/dclassic-2025-06-14-72452-580-PM.jpg" alt="dclassic-2025-06-14-72452-580-PM" border="0"></a>
+  <div class="question-box">
+    <p>en quelle année sommes-nous partis à disney ?</p>
+    <input type="text" id="answer" placeholder="ta réponse ici" />
+    <button onclick="checkAnswer()">valider</button>
+    <p id="error" style="color:red;"></p>
   </div>
-  <p>à mettre dans la cheminée.</p>
+  
+  <div class="photo-loading" id="photoBox">
+    <a href="https://ibb.co/gbLWV5S4"><img src="https://i.ibb.co/6c7tB3HX/dclassic-2025-06-14-72452-580-PM.jpg" alt="photo" border="0"></a>
+    <p>à mettre dans la cheminée.</p>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById("answer").value.trim().toLowerCase();
+      if (input === "2017") {
+        document.querySelector(".question-box").style.display = "none";
+        document.getElementById("photoBox").style.display = "block";
+      } else {
+        document.getElementById("error").innerText = "mauvaise réponse ! essaie encore.";
+      }
+    }
+  </script>
 </body>
 </html>
