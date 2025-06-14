@@ -52,7 +52,7 @@
 </head>
 <body>
   <div class="question-box">
-    <p>quelle est ma pizza préférée ?</p>
+    <p>quel était l'objet personnalisé que tu as reçu pour la fête des pères, il y a deux ans?</p>
     <input type="text" id="answer" placeholder="ta réponse ici" />
     <button onclick="checkAnswer()">valider</button>
     <p id="error" style="color:red;"></p>
@@ -66,7 +66,7 @@
   <script>
     function checkAnswer() {
       const input = document.getElementById("answer").value.trim().toLowerCase();
-      if (input === "quatre fromages") {
+      if (input === "couteau") {
         document.querySelector(".question-box").style.display = "none";
         document.getElementById("photoBox").style.display = "block";
       } else {
