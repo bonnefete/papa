@@ -11,12 +11,14 @@
     font-family: Arial, sans-serif;
     color: black;
     text-align: center;
+    padding: 2em;
   }
   .photo-loading {
     max-width: 600px;
     margin: 2em auto 1em;
     position: relative;
     overflow: hidden;
+    display: none;
   }
   .photo-loading img {
     width: 100%;
@@ -30,15 +32,48 @@
       opacity: 1;
     }
   }
+  form {
+    margin-top: 2em;
+  }
+  input[type="text"] {
+    padding: 0.5em;
+    font-size: 1rem;
+    width: 250px;
+    max-width: 80%;
+  }
+  button {
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    margin-left: 0.5em;
+    cursor: pointer;
+  }
   p {
     font-size: 1rem;
   }
 </style>
 </head>
 <body>
-  <div class="photo-loading">
+  <h1>question : quel est le surnom <b>complet</b> que tu me donnes ?</h1>
+  <form onsubmit="event.preventDefault(); checkAnswer();">
+    <input type="text" id="answer" placeholder="ta réponse ici" />
+    <button type="submit">valider</button>
+  </form>
+
+  <div class="photo-loading" id="photoContainer">
     <img src="https://i.ibb.co/rKzs4tL6/dclassic-2025-06-14-72554-813-PM.jpg" alt="Photo 5" />
   </div>
-  <p>des tonnes de connaissances. <b>(25)</b></p>
+  <p id="caption" style="display: none;">des tonnes de connaissances. <b>(25)</b></p>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById('answer').value.trim().toLowerCase();
+      if (input === 'wawamouth') {
+        document.getElementById('photoContainer').style.display = 'block';
+        document.getElementById('caption').style.display = 'block';
+      } else {
+        alert("mauvaise réponse ! essaie encore.");
+      }
+    }
+  </script>
 </body>
 </html>
