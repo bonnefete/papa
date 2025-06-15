@@ -12,11 +12,26 @@
     color: black;
     text-align: center;
   }
+  .question-box {
+    margin-top: 3em;
+  }
+  input[type="text"] {
+    padding: 0.5em;
+    font-size: 1rem;
+    width: 200px;
+    margin-right: 0.5em;
+  }
+  button {
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    cursor: pointer;
+  }
   .photo-loading {
     max-width: 600px;
     margin: 2em auto 1em;
     position: relative;
     overflow: hidden;
+    display: none;
   }
   .photo-loading img {
     width: 100%;
@@ -36,9 +51,28 @@
 </style>
 </head>
 <body>
-  <div class="photo-loading">
-    <img src="https://i.ibb.co/XxRXnC9m/dclassic-2025-06-14-72632-075-PM.jpg" alt="Photo 6" />
+  <div class="question-box">
+    <p>veuillez entrer le code.</p>
+    <input type="text" id="answer" placeholder="code ici" />
+    <button onclick="checkAnswer()">valider</button>
+    <p id="error" style="color:red;"></p>
   </div>
-  <p>bravo. quelque chose t'attend là-bas. :)</p>
+  
+  <div class="photo-loading" id="photoBox">
+    <img src="https://i.ibb.co/XxRXnC9m/dclassic-2025-06-14-72632-075-PM.jpg" alt="Photo 6" />
+    <p>bravo. quelque chose t'attend là-bas. :)</p>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById("answer").value.trim();
+      if (input === "150625") {
+        document.querySelector(".question-box").style.display = "none";
+        document.getElementById("photoBox").style.display = "block";
+      } else {
+        document.getElementById("error").innerText = "mauvais code ! essaie encore.";
+      }
+    }
+  </script>
 </body>
 </html>
